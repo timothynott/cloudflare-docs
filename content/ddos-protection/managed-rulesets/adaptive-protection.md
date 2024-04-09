@@ -61,13 +61,41 @@ For more information on the types of DDoS attacks covered by Cloudflare's DDoS p
 
 ## View flagged traffic
 
-To view traffic flagged by HTTP Adaptive DDoS Protection rules:
+### HTTP Adaptive DDoS Protection
+
+To view traffic flagged by a rule belonging to HTTP Adaptive DDoS Protection:
 
 1. Log in to the [Cloudflare dashboard](https://dash.cloudflare.com/), and select your account and website.
-2. Go to **Security** > **Events**.
-3. Filter by `Service equals HTTP DDoS` and by the rule ID.
+2. Obtain the rule ID in the Cloudflare dashboard:
 
-For L3/4 Adaptive DDoS Protection rules, currently you must use [Logpush](/logs/about/) or the [GraphQL API](/analytics/graphql-api/) to view the flagged traffic.
+    1. Go to **Security** > **DDoS**.
+    2. Select **Deploy a DDoS override**, and then select **Browse rules**.
+    3. Search for rules containing `Adaptive` in their name.
+    4. Next to the ID of the desired rule, select **Copy**.
+    5. Select **Back to review** and then **Back to DDoS** once you have copied the rule ID.
+
+3. Go to your website > **Security** > **Events**.
+4. Filter by `Service equals HTTP DDoS` and by the rule ID you obtained.
+
+### L3/4 Adaptive DDoS Protection
+
+To view traffic flagged by a rule belonging to L3/4 Adaptive DDoS Protection:
+
+1. Log in to the [Cloudflare dashboard](https://dash.cloudflare.com/) and select your account.
+2. Obtain the rule ID in the Cloudflare dashboard:
+
+    1. Go to **L3/4 DDoS**.
+    2. Select **Deploy a DDoS override**.
+    3. For **Set Scope**, select _Apply DDoS managed ruleset override to all incoming packets_.
+    4. Select **Next**.
+    5. Search for rules containing `Adaptive` in their name.
+    6. Next to the ID of the desired rule, select **Copy**.
+    7. Select **Cancel** once you have copied the rule ID.
+
+2. Go to your account > **Analytics & Logs** > **Network Analytics**.
+3. Filter by `Ruleset ID equals 3b64149bfa6e4220bbbc2bd6db589552` (the ID of the Network-layer DDoS Attack Protection managed ruleset) and by the rule ID you obtained.
+
+You may also obtain information about flagged traffic through [Logpush](/logs/about/) or the [GraphQL API](/analytics/graphql-api/).
 
 ## Configure the rules
 
